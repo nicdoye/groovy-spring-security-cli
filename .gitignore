@@ -1,0 +1,13 @@
+# OS Cruft
+.DS_Store
+
+# Editor Cruft
+.vscode
+.vstags
+.idea
+*~
+*.swp
+
+*.bak
+
+=*.tmp
