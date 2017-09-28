@@ -21,14 +21,16 @@ c183b67c7d88e90d20c71a8b6dc795c74f71efbb6fd34aa52eee138583648c900bcd17e6866e3d95
 
 ## Test
 
-A dumb test:
+Two dumb tests show that it can dump passwords that work back in another program.
 
 ```bash
 groovy Encoder  'my-awesome-new-password-is-not-abc123' | \
-  groovy TestEncoder  'my-awesome-new-password-is-not-abc123' | \
+  groovy TestEncoder  'my-awesome-new-password-is-not-abc123'
+```
 
+```bash
 groovy Encoder  'my-awesome-new-password-is-not-abc123' 'secret-salt' | \
-  groovy TestEncoder  'my-awesome-new-password-is-not-abc123' 'secret-salt' | \
+  groovy TestEncoder  'my-awesome-new-password-is-not-abc123' 'secret-salt'
 ```
 
 ### Author, Copyright
