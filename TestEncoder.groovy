@@ -16,16 +16,14 @@ switch(args.size()) {
     encoder = new crypto.password.StandardPasswordEncoder(secret)
     break
   default:
-    throw new IllegalArgumentException("""I require at least one arguement - the password.
-Optionally a second argument can be passed that is the secret""")
+    throw new IllegalArgumentException("I require at least one arguement - the password. Optionally a second argument is the secret")
 }
 
 // Sanity - check password has been set.
 assertNotNull password
 assertNotNull encoder
 
-encodedPassword = encoder.encode(password)
-assert encoder.matches(password,encodedPassword)
-assertNotNull encodedPassword
-println encodedPassword
-
+// We should only get one line...
+System.in.eachLine { line ->
+  assert encoder.matches(password,line)
+}
