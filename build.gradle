@@ -1,0 +1,37 @@
+apply plugin: 'groovy'
+apply plugin: 'application'
+version = '1.0'
+mainClassName='Encoder'
+
+repositories {
+        mavenCentral()
+}
+
+configurations {
+    ivy
+}
+
+dependencies {
+    ivy "org.apache.ivy:ivy:2.3.0"
+    compile "org.springframework.security:spring-security-core:4.1.1.RELEASE"
+    compile "org.apache.ivy:ivy:2.3.0"  
+    compile "org.codehaus.groovy:groovy-all:2.4.12"
+    compile "junit:junit:4.12"
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.0'
+}
+
+tasks.withType(GroovyCompile) {
+    groovyClasspath += configurations.ivy
+}
+
+task uberjar(type: Jar,dependsOn:[':compileJava',':compileGroovy']) {
+    from files(sourceSets.main.output.classesDir)
+    from configurations.runtime.asFileTree.files.collect { zipTree(it) }
+
+    manifest {
+        attributes 'Main-Class': mainClassName  
+    }
+}
